@@ -1,0 +1,30 @@
+body {
+  background-color: #d1d6d62b;
+  font-family: var(--font-family);
+  font-size: 1em;
+}
+
+
+.app {
+  position: relative;
+}
+
+.app .logo {
+  display: flex;
+  justify-content: left;
+  border-radius: 5px;
+  margin-right: 0.5em;
+}
+
+.app .logo img {
+  width: 75px;
+  height: 75px;
+}
+
+.content {
+  width: calc(100% - 16px);
+  height: calc(100vh - 8em);
+  /* background-color: white; */
+  border-radius: 5px;
+  padding: 8px;
+}

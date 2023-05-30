@@ -1,0 +1,10 @@
+.row-item {
+    width: 100%;
+    background-color: aqua;
+    margin-bottom: 0.5em;
+}
+
+.row-form {
+    display: flex;
+    margin: 0.5em 0;
+}
