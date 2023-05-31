@@ -35,9 +35,13 @@ const Home = () => {
     const [addButtonIcon, setaddButtonIcon] = useState('pi pi-plus');
 
     useEffect(() => {
+        getEmployees();
+    }, []);
+
+    const getEmployees = () => {
         let apiUrl = BASE_API_URL + '/api/GetEmployee'
         axios.get(apiUrl).then(r => setEmployees(r.data));
-    }, []);
+    }
 
     const toggleForm = () => {
         changeIcons()
@@ -46,10 +50,8 @@ const Home = () => {
 
     const saveEmployee = () => {
         let apiUrl = BASE_API_URL + '/api/SaveEmployee';
-        let arr = [];
-        arr.push(name);
-        axios.post(apiUrl, arr).then(r => {
-            setEmployees(r.data)
+        axios.post(apiUrl, name).then(r => {
+            getEmployees();
             changeIcons();
             setIsAdd(false);
         });
@@ -66,10 +68,12 @@ const Home = () => {
 
     return (
         <div>
-            <Button icon={addButtonIcon} size="small" rounded className='mb-2' onClick={toggleForm} />
+            <div className='add-item-btn'>
+                <Button icon={addButtonIcon} size="small" rounded className='mb-2' onClick={toggleForm} />
+            </div>
             {isAdd && <div className='row-form'>
                 <span className="p-float-label px-1">
-                    <InputText id="txtFirstName" value={name.firstName} onChange={(e) => setName(prev => {
+                    <InputText type="text" id="txtFirstName" className="p-inputtext-sm" value={name.firstName} onChange={(e) => setName(prev => {
                         return {
                             ...prev, firstName: e.target.value
                         }
@@ -77,14 +81,14 @@ const Home = () => {
                     <label htmlFor="txtFirstName">First Name</label>
                 </span>
                 <span className="p-float-label px-1">
-                    <InputText id="txtLastName" value={name.lastName} onChange={(e) => setName(prev => {
+                    <InputText type="text" id="txtLastName" className="p-inputtext-sm" value={name.lastName} onChange={(e) => setName(prev => {
                         return {
                             ...prev, lastName: e.target.value
                         }
                     })} />
                     <label htmlFor="txtLastName">Last Name</label>
                 </span>
-                <Button label="Save" icon="pi pi-check" iconPos="right" className='mb-2' onClick={saveEmployee} />
+                <Button label="Save" icon="pi pi-check" iconPos="right" className='mb-2' size="small" onClick={saveEmployee} />
             </div>}
             <DataView value={employees} itemTemplate={itemTemplate} paginator rows={3} />
         </div>
