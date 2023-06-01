@@ -21,6 +21,7 @@
 }
 
 .emp-cord {
+    position: relative;
     width: 100%;
     background-color: #3F51B5;
     padding-top: 6px;
@@ -44,6 +45,7 @@
     font-style: italic;
     font-size: 1.1em;
     margin-bottom: 0.5em;
+    z-index: 2;
 }
 
 .emp-exp-details {
@@ -52,4 +54,45 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 0.1em 0.8em;
+    z-index: 1;
+    animation: slide-down 1s ease-in-out 0s 2 alternate;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.delete-item {
+    color: #ff0000;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0.625em;
+    margin-right: 0.625em;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(-10px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(10px);
+        /* background-color: #bfc1c3; */
+        color: #ff0000;
+    }
 }
