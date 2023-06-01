@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { DataView } from 'primereact/dataview';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Avatar } from 'primereact/avatar';
 
 
 
@@ -14,11 +15,20 @@ import { BASE_API_URL } from '../config';
 
 const itemTemplate = (employee) => {
     return (
-        <Card className='row-item' title={employee.firstName}>
-            <p className="m-0">
-                {employee.employeeId} - {employee.firstName} {employee.lastName}
-            </p>
-        </Card>
+        <span className='emp'>
+            <div className='emp-cord'>
+                <Avatar image={employee.imagePath} size="xlarge" style={{ backgroundColor: '#ffffff' }} />
+                <div className='emp-data-container'>
+                    <span className='emp-name'>{employee.firstName}{" "}{employee.lastName}</span>
+                    <span className='emp-details'>
+                        Id : {employee.employeeId}; First Name : {employee.firstName}; Last Name : {employee.lastName}
+                    </span>
+                </div>
+            </div>
+            <div className='emp-exp-details'>
+                <p>{employee.discription}</p>
+            </div>
+        </span>
     )
 }
 
